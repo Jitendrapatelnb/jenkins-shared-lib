@@ -1,0 +1,19 @@
+@Library('my-shared-lib') _
+pipeline {
+    agent any
+    stages {
+        stage('Build') {
+            steps {
+                echo 'Building...'
+                // Add your build steps here (e.g., Maven, Gradle)
+            }
+        }
+
+        stage('Publish to JFrog') {
+            steps {
+                // Calls a function in your shared library for JFrog
+                artifact.pushToJFrog('target/myapp.jar')
+            }
+        }
+    }
+}
